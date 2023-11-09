@@ -21,8 +21,7 @@ class Task(models.Model):
     )
     tags = models.ManyToManyField(
         Tag,
-        on_delete=models.CASCADE,
-        related_name="tags"
+        related_name="tags",
     )
 
 
