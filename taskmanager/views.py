@@ -32,13 +32,8 @@ class TaskDeleteView(generic.DeleteView):
 
 def complete_or_not(request, pk):
     task = Task.objects.get(id=pk)
-    state = task.task_done
-    if state:
-        task.task_done = False
-        task.save()
-    else:
-        task.task_done = True
-        task.save()
+    task.task_done = not task.task_done
+    task.save()
     return redirect("taskmanager:index")
 
 
