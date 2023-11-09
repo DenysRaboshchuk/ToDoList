@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -58,10 +58,9 @@ class TagsDeleteView(generic.DeleteView):
 class TaskChangeStatus(generic.RedirectView):
     model = Task
     template_name = "taskmanager/index.html"
-    
+
     def get_redirect_url(self, *args, **kwargs):
         task = get_object_or_404(Task, pk=kwargs["pk"])
         task.task_done = not task.task_done
         task.save()
         return super().get_redirect_url(*args, **kwargs)
-        
