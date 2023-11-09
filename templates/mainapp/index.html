@@ -2,6 +2,34 @@
 
 
 {% block content %}
-  <h1>TODO list</h1>
+  <h1 class="index-title">TODO list<a class="btn btn-primary" style="float: right" href="{% url 'mainapp:task-add' %}">Add task</a></h1>
+  <br>
+  {% for task in task_list %}
+    <div class="ml-3 border-bottom">
+    {% if task.task_done %}
+
+      <h6>{{ task.content }} <span class="color-green">Done</span> <a class="btn btn-secondary" style="float: right" href="{% url 'mainapp:complete-or-not' pk=task.id %}">Undo</a></h6>
+    {% else %}
+
+      <h6>{{ task.content }} <span class="color-red">Not done</span> <a class="btn btn-success" style="float: right" href="{% url 'mainapp:complete-or-not' pk=task.id %}">Complete</a></h6>
+    {% endif %}
+
+      <p>Created: {{ task.datetime_field }} </p>
+      <span>Tags:
+      {% for tag in task.tags.all %}
+         {{ tag.name }}
+      </span>
+      {% endfor %}
+
+
+
+
+
+      <p><a href="{% url 'mainapp:task-update' pk=task.id %}">Update</a> <a href="{% url 'mainapp:task-delete' pk=task.id %}">Delete</a></p>
+    </div>
+
+    <br>
+  {% endfor %}
+
 {% endblock %}
 
