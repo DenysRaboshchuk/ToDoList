@@ -1,16 +1,17 @@
-from django.urls import path
+from django.urls import path, reverse, reverse_lazy
 
 from taskmanager.views import (
     Index,
     TaskCreateView,
     TaskUpdateView,
     TaskDeleteView,
-    complete_or_not,
     TagsListView,
     TagsCreateView,
     TagsUpdateView,
     TagsDeleteView,
+    TaskChangeStatus,
 )
+
 
 urlpatterns = [
     path("", Index.as_view(), name="index"),
@@ -27,7 +28,7 @@ urlpatterns = [
     ),
     path(
         "complete-or-not/<int:pk>/",
-        complete_or_not,
+        TaskChangeStatus.as_view(url="/"),
         name="complete-or-not"
     ),
     path("tags/", TagsListView.as_view(), name="tags-list"),
