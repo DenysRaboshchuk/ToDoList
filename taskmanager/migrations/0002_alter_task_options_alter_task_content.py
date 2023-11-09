@@ -5,7 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mainapp", "0001_initial"),
+        ("taskmanager", "0001_initial"),
     ]
 
     operations = [

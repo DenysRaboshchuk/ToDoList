@@ -24,7 +24,7 @@ class Task(models.Model):
     )
     tags = models.ManyToManyField(
         Tag,
-        related_name="tags",
+        related_name="tasks",
     )
 
     class Meta:

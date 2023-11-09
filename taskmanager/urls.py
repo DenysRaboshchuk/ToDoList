@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from mainapp.views import (
+from taskmanager.views import (
     Index,
     TaskCreateView,
     TaskUpdateView,
@@ -26,4 +26,4 @@ urlpatterns = [
 
 ]
 
-app_name = "mainapp"
+app_name = "taskmanager"
