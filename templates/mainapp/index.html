@@ -2,7 +2,7 @@
 
 
 {% block content %}
-  <h1 class="index-title">TODO list<a class="btn btn-primary" style="float: right" href="{% url 'mainapp:task-add' %}">Add task</a></h1>
+  <h1 class="page-title">TODO list<a class="btn btn-primary" style="float: right" href="{% url 'mainapp:task-add' %}">Add task</a></h1>
   <br>
   {% for task in task_list %}
     <div class="ml-3 border-bottom">

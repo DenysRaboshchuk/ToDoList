@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from mainapp.models import Task
+from mainapp.models import Task, Tag
 
 
 class Index(generic.ListView):
@@ -40,3 +40,28 @@ def complete_or_not(request, pk):
         task.task_done = True
         task.save()
     return redirect("mainapp:index")
+
+
+class TagsListView(generic.ListView):
+    model = Tag
+    template_name = "mainapp/tag-list.html"
+
+
+class TagsCreateView(generic.CreateView):
+    model = Tag
+    template_name = "mainapp/tag-form.html"
+    fields = "__all__"
+    success_url = reverse_lazy("mainapp:tags-list")
+
+
+class TagsUpdateView(generic.UpdateView):
+    model = Tag
+    template_name = "mainapp/tag-form.html"
+    fields = "__all__"
+    success_url = reverse_lazy("mainapp:tags-list")
+
+
+class TagsDeleteView(generic.DeleteView):
+    model = Tag
+    template_name = "mainapp/tag-confirm-delete.html"
+    success_url = reverse_lazy("mainapp:tags-list")
